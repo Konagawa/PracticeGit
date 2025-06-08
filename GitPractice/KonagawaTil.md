@@ -12,3 +12,14 @@ gitの学習二日目
 **【学んだこと】**
 - JDBCを学習
   - クラスとインターフェースで構成され、RDBMSとJavaを連携させるために存在している。
+**一般的なJDBC接続URLの書き方：**
+```
+jdbc:データベース種別://ホスト名:ポート番号/データベース名
+```
+**接続、クローズ時のクラス**
+- 接続：DriverManagerクラス　getConnectionメソッド
+- 切断：Connectionオブジェクトのcloseメソッド
+
+Statementはパラメーター無しのSQLのみを実行する。
+PreparedStatementはパラメータを受け取るSQLを実行
+一般的には後者を使用することが多い。
