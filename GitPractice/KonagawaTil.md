@@ -20,6 +20,22 @@ jdbc:データベース種別://ホスト名:ポート番号/データベース�
 - 接続：DriverManagerクラス　getConnectionメソッド
 - 切断：Connectionオブジェクトのcloseメソッド
 
-Statementはパラメーター無しのSQLのみを実行する。
-PreparedStatementはパラメータを受け取るSQLを実行
-一般的には後者を使用することが多い。
+**JDBCのAPIについて**
+- **Statement**インターフェースはパラメーター無しのSQLのみを実行する。
+  - SQLを文字列として受け取ったDBMSが都度コンパイルするので効率が悪い
+- **PreparedStatement**インターフェースはパラメータを受け取るSQLを実行。
+  - DBMSがSQL文を理解できるように、事前にコンパイルされる。
+  - オブジェクト生成には、Connectionインターフェースの
+  　**prepareStatement**メソッドを使用（過去形ではない）
+  - 一般的には後者を使用することが多い。
+※prepared = 準備された
+
+| 項目          | `Statement`                    | `PreparedStatement`             |
+| ----------- | ------------------------------ | ------------------------------- |
+| パラメータの使用    | ❌ 使用できない（SQLに直接値を埋め込む）         | ✅ `?` を使ってパラメータを設定できる           |
+| SQLのコンパイル   | 毎回コンパイルされる                     | 最初に一度だけコンパイルされ、以降は再利用される        |
+| 実行の効率       | ❌ 非効率（都度SQL解析）                 | ✅ 効率的（事前コンパイル済み）                |
+| セキュリティ      | ❌ SQLインジェクションのリスクあり            | ✅ SQLインジェクション対策に強い              |
+| オブジェクトの生成方法 | `Connection.createStatement()` | `Connection.prepareStatement()` |
+| 使用頻度        | あまり使われない                       | ✅ 一般的によく使われる                    |
+executeUpdate | 引数にSQLを渡せる。| executeUpdate()※SQL不可、例外が発生する
