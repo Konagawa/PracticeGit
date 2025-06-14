@@ -4,7 +4,6 @@
 ## 6/7
 朝10時から勉強開始
 
-
 ## 6/8
 gitの学習二日目
 ポンデリングしか買えない。
@@ -61,3 +60,23 @@ executeUpdate | 引数にSQLを渡せる。| executeUpdate()※SQL不可、例�
 10. インデックスによって順序付けられるデータ構造
 13. Setは重複した値を許容しないコレクション
 
+## 6/14 8章、9章
+git研修用の資料を修正。
+
+- 例外はcatchで複数同時に指定できるが、継承関係にある場合は不可
+
+- 独自に作る例外もExceptionのサブクラスでなければならない。
+- try-with-resouceはリソースを自動的に閉じる為に使う
+```
+// これは try-with-resources
+try (BufferedReader reader = new BufferedReader(new FileReader("file.txt")))
+```
+
+```
+// これは通常の try-catch-finally
+try {
+    reader = new BufferedReader(new FileReader("file.txt"));
+    // ... 処理 ...
+} catch (IOException e) 、、、
+```
+- 引数は`java.lang.AutoCloseable` インターフェースを実装しているクラスが対象
