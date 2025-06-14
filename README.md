@@ -1,4 +1,6 @@
 # Til(Today is Learn)
+##なにするの？
+学習の記録を日記として残しつつ、GitやGitHubを使ったバージョン管理を体験しましょう。  
 
 ## 導入方法
 - git(gitbash)をインストール
